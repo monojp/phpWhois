@@ -25,6 +25,7 @@ class ParserTest extends TestCase
             ['date' => '19990221 #142485', 'format' => 'Ymd', 'expected' => '1999-02-21'],
             ['date' => '1998/02/05', 'format' => 'Ymd', 'expected' => '1998-02-05'],
             ['date' => '2010-04-23T09:12:48Z', 'format' => 'mdy', 'expected' => '2010-04-23'],
+            'day smaller than month' => ['date' => '2017-06-02T01:32:58Z', 'format' => 'mdy', 'expected' => '2010-06-02'],
             // ['date' => '', 'format' => 'Ymd', 'expected' => ''],
         ];
     }
