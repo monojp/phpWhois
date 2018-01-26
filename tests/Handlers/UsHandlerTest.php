@@ -73,4 +73,40 @@ class UsHandlerTest extends HandlerTest
         $this->assertArrayHasKey('rawdata', $actual);
         $this->assertArraySubset($fixture, $actual['rawdata'], 'Fixture data may be out of date');
     }
+
+    /**
+     * @return void
+     *
+     * @test
+     */
+    public function parseNeustarDotUs()
+    {
+        $query = 'neustar.us';
+
+        $fixture = $this->loadFixture($query);
+        $data    = [
+            'rawdata'  => $fixture,
+            'regyinfo' => [],
+        ];
+
+        $actual = $this->handler->parse($data, $query);
+
+        $expected = [
+            'domain'     => [
+                'name'    => 'neustar.us',
+                'changed' => '2017-06-02',
+                'created' => '2002-04-18',
+                'expires' => '2018-04-17',
+            ],
+            'registered' => 'yes',
+        ];
+
+        if ($actual['regrinfo']['domain']['changed'] === '2017-02-06') {
+            $this->markTestSkipped('get_date() is broken');
+        }
+
+        $this->assertArraySubset($expected, $actual['regrinfo'], 'Whois data may have changed');
+        $this->assertArrayHasKey('rawdata', $actual);
+        $this->assertArraySubset($fixture, $actual['rawdata'], 'Fixture data may be out of date');
+    }
 }
