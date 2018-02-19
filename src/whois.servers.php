@@ -63,7 +63,7 @@ return array(
     'net.whois-servers.net' => 'domain =$domain',
     'de.whois-servers.net'  => '-T dn,ace $domain',
     'jp.whois-servers.net'  => 'DOM $domain/e',
-	'whois.denic.de'        => '-T dn,ace $domain.$tld',
+    'whois.denic.de'        => '-T dn,ace $domain.$tld',
 ),
 
 /* TLD's that have special whois servers or that can only be reached via HTTP */
